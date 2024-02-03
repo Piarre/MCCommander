@@ -5,7 +5,6 @@ import { resolve } from "path";
 import { ServerType } from "../@types/minecraft.js";
 import Log from "./log.js";
 import { versions } from "./minecraft.js";
-import { supportsColorStderr } from "chalk";
 
 const execa = import("execa");
 
