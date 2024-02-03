@@ -1,25 +1,16 @@
 {
   "name": "@piarre/mcsc-v2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "out/index.js",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./out/index.js",
-      "require": "./out/index.js"
-    },
-    "./bin/mcsc.cjs": {
-      "import": "./bin/mcsc.cjs",
-      "require": "./bin/mcsc.cjs"
-    }
-  },
   "publishConfig": {
     "access": "public"
   },
   "bin": {
     "@piarre/mcsc": "./bin/mcsc.cjs",
-    "mcsc": "./bin/mcsc.cjs"
+    "mcsc": "./bin/mcsc.cjs",
+    "mc": "./bin/mcsc.cjs"
   },
   "scripts": {
     "dev": "npm run clean && tsup --watch",
