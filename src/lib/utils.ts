@@ -1,9 +1,11 @@
+import path from "path";
+import { fileURLToPath } from "url";
 import { cpSync, existsSync, mkdir } from "fs";
 import { resolve } from "path";
-import { chdir } from "process";
 import { ServerType } from "../@types/minecraft.js";
 import Log from "./log.js";
 import { versions } from "./minecraft.js";
+import { supportsColorStderr } from "chalk";
 
 const execa = import("execa");
 
@@ -31,18 +33,25 @@ export const getJar = async (version: string, type: ServerType = "VANILLA", path
 };
 
 export const createServer = async (directory: string, version: string, type?: ServerType) => {
-  const { log, error } = new Log();
+  const { log, success ,error } = new Log();
 
   if (!existsSync(`${process.cwd()}/${directory}`)) {
     log("Creating server directory...");
     await mkdir(`./${directory}`, () => {
+      log("Server directory created");
+      log(`Downloading server jar for version ${version}.`);
       getJar(version, type, directory);
+      log("Copying server files...");
       cpSync(`${resolve(__dirname)}/template/`, `${process.cwd()}/${directory}`, {
         recursive: true,
       });
     });
-    log("Server directory created");
+    success("Server created successfully");
   } else {
-    error("Server directory already exists");
+    error("A directory with the same name already exists.");
   }
+
 };
+
+const __filename = fileURLToPath(import.meta.url);
+export const __dirname = path.dirname(__filename);
