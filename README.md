@@ -1,6 +1,6 @@
 # IDE
 
-🚀 A personal CLI for me...
+🚀 A simple CLI to create Minecraft Servers
 
 ## ⬇️ Installation
 
